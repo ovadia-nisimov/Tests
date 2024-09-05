@@ -291,21 +291,19 @@ return result;
 
 
 function Mission2(militaryUnit) {
-let count = 0;
-for (let i = 0; i < militaryUnit.personnel.length; i++) {
-  count++;
+  const count = militaryUnit.personnel.length;
+  const result = `Number of personnel: ${count}`;
+  console.log(result);
+  return result;
 }
-const result = `Number of personnel: ${count}`;
-console.log(result);
-return result;
-}
+
 
 
 
 function Mission3(NewDeployment, militaryUnit) {
 militaryUnit.history.push({
   eventDate: militaryUnit.currentDeployment.startDate,
-  eventDescription: "Establishment of the 1st Infantry Division."
+  eventDescription: `Participated in the ${militaryUnit.currentDeployment.mission} in ${militaryUnit.currentDeployment.location}`
 });
 
 militaryUnit.currentDeployment = NewDeployment;
@@ -355,9 +353,5 @@ module.exports = {
   Mission2,
   Mission3,
   Mission4,
-   Mission5
+  Mission5
   };
-
-
-
-
