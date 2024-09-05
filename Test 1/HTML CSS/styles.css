@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #004000;
+    color: white;
+    padding: 15px;
+    padding-top: 0px;
+    text-align: center;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    background-color: #003000;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu div {
+    margin: 0 15px;
+    color: white;
+    font-size: 16px;
+}
+
+
+h2 {
+    margin: 10px;
+    margin-left: 0px;
+    
+}
+
+h3 {
+    text-align: left;
+}
+
+.welcome-section {
+    padding: 20px;
+    background-color: #fff;
+    text-align: left;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.schedule-section {
+    padding: 20px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.schedule {
+    display: flex;
+    flex-direction: column;
+    margin-left: 33%;
+    margin-right: 33%;
+
+}
+
+.training-item {
+    background-color: #e6e6e6;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.training-item:hover {
+    background-color: #d6d6d6;
+}
+
+.category {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.physical {
+    background-color: #d87a8b;
+}
+
+.tactical {
+    background-color: #79b6e2;
+}
+
+.technical {
+    background-color: #eef76f;
+}
+
+.instructor {
+    display: block;
+    margin-top: 10px;
+    font-style: italic;
+    color: #767676;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #004000;
+    color: white;
+    bottom: 0;
+    width: 100%;
+}
