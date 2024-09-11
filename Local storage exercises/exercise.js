@@ -1,5 +1,5 @@
 function filterAndSortEvenNumbers(arr){
-    return arr.filter(n => n % 2 === 0).sort();
+    return arr.filter(n => n % 2 === 0).sort((a, b) => a - b);
 }
 console.log(filterAndSortEvenNumbers([1, 5, 7, 98, 34, 6, 21]))
 
