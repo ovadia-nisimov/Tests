@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #223B53;
+    color: #fff;
+}
+
+.container {
+    width: 100%;
+    background-color: #223b53;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #1E3A51;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #54b564;
+}
+
+hr {
+    border-color: #54b564;;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 2% 24%;
+    background-color: #294560;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.form-container input, .form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1b2f41;
+    color: #8f938f;
+}
+
+.form-container select {
+    color: #f4f6f7;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 15px;
+    border: 1px solid #767b77;
+}
+
+th {
+    background-color: #f4f6f7;
+    color: #54b564;;
+    font-size: 16px;
+}
+
+td {
+    background-color: #2a4867;
+    font-size: 14px;
+}
+
+td:nth-child(6) {
+    width: 27%; 
+    text-align: center;
+}
+
+.action-btn, .add-btn, th button, .save-btn {
+    background-color: #54b564;;
+    color: #ffffff;
+    border: none;
+    padding: 6px 0; 
+    width: 100%; 
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: block;
+    text-align: center;
+}
+
+.cancel-btn {
+    background-color: #e74c3c; 
+    color: #ffffff;
+    border: none;
+    padding: 6px 0;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: block;
+    text-align: center;
+}
+
+.action-btn:hover {
+    background-color: #54b564;;
+}

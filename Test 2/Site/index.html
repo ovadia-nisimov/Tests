@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>BATTALION FORCE MANAGEMENT</h1>
+        <hr>
+        <form class="form-container">
+            <input type="text" placeholder="Full Name" name="fullName" required>
+            <input type="text" placeholder="Rank" name="rank" required>
+            <input type="text" placeholder="Position" name="position" required>
+            <input type="text" placeholder="Platoon" name="platoon" required>
+            <input type="number" placeholder="Mission Time (seconds)" name="missionTime" required>
+            <select name="status" required>
+                <option value="active">Active</option>
+                <option value="reserve">Reserve</option>
+                <option value="retired">Retired</option>
+            </select>
+            <button type="submit" class="add-btn">Add Personnel</button>
+        </form>
+        
+        <h2>FORCES OVERVIEW</h2>
+        <hr>
+        <table>
+            <thead>
+                <tr>
+                    <th><button>Full Name ↓</button></th>
+                    <th>Rank</th>
+                    <th>Position</th>
+                    <th>Platoon</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
