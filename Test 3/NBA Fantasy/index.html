@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="./JS/view.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>NBA FANTASY 2014-2024</h1>
+    </header>
+
+    <main>
+        <article>
+            <h2>My Fantasy Team</h2>
+            <div class="team-container">
+                <div id="point-guard" class="player-card">
+                    <h3>Point Guard</h3>
+                </div>
+                <div id="shooting-guard" class="player-card">
+                    <h3>Shooting Guard</h3>
+                </div>
+                <div id="small-forward" class="player-card">
+                    <h3>Small Forward</h3>
+                </div>
+                <div id="power-forward" class="player-card">
+                    <h3>Power Forward</h3>
+                </div>
+                <div id="center" class="player-card">
+                    <h3>Center</h3>
+                </div>
+            </div>
+            
+        </article>
+
+        <section>
+            <h2>NBA Player Search</h2>
+            <form>
+                <label for="position">Select Position:</label>
+                <select id="position" name="position">
+                    <option value="PG">PG</option>
+                    <option value="SG">SG</option>
+                    <option value="SF">SF</option>
+                    <option value="PF">PF</option>
+                    <option value="C">C</option>
+                </select>
+            
+                <label for="points">Points:</label>
+                <div>
+                    <input type="range" id="points" name="points" min="0" max="20000" value="10000">
+                    <span id="pointsValue">10000</span>
+                </div>
+            
+                <label for="fgp">Two Point Percentage:</label>
+                <div>
+                    <input type="range" id="fgp" name="fgp" min="0" max="100" value="50">
+                    <span id="fgpValue">50%</span>
+                </div>
+                
+                <label for="tpp">Three Point Percentage:</label>
+                <div>
+                    <input type="range" id="tpp" name="tpp" min="0" max="100" value="50">
+                    <span id="tppValue">50%</span>
+                </div>
+
+                <button type="submit">Search Player</button>
+            </form>            
+            
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Position</th>
+                        <th>Points</th>
+                        <th>FG%</th>
+                        <th>3P%</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
