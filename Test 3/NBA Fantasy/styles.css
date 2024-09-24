@@ -103,10 +103,19 @@ button:hover {
     background-color: #25336b;
 }
 
+.btn {
+    width: 200px;
+    height: 40px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+}
+
+.hidden {
+    display: none;
 }
 
 th, td {

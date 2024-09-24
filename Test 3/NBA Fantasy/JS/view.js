@@ -24,28 +24,8 @@ function createParagraph(content) {
 }
 // פונקציה שמכניסה לכרטיסים את השחקנים שבחרתי
 function addPlayerToTeam(player) {
-    let cardId;
-    switch (player.position) {
-        case 'PG':
-            cardId = 'point-guard';
-            break;
-        case 'SG':
-            cardId = 'shooting-guard';
-            break;
-        case 'SF':
-            cardId = 'small-forward';
-            break;
-        case 'PF':
-            cardId = 'power-forward';
-            break;
-        case 'C':
-            cardId = 'center';
-            break;
-        default:
-            console.log('Invalid position:', player.position);
-            return;
-    }
-    const card = document.getElementById(cardId);
+    const position = document.getElementById('position').value;
+    const card = document.getElementById(position);
     if (card) {
         // הסרה של פסקה שקיימת למניעת כפילויות
         card.querySelectorAll('p').forEach((p) => p.remove());
@@ -55,16 +35,13 @@ function addPlayerToTeam(player) {
         card.appendChild(createParagraph(`Points: ${player.points}`));
     }
 }
-// הפונקציה שיוצרת את הטבלה עם השחקנים
+// פונקציה שיוצרת את הטבלה עם השחקנים
 function populateTable(players) {
     const tableBody = document.querySelector('tbody');
     const tableHeader = document.querySelector('thead');
     tableBody.innerHTML = '';
-    if (players.length === 0) {
-        tableHeader.style.display = 'none';
-    }
-    else {
-        tableHeader.style.display = '';
+    if (players.length !== 0) {
+        tableHeader.classList.remove("hidden");
         players.forEach((player) => {
             const row = document.createElement('tr');
             const playerNameCell = document.createElement('td');
@@ -79,6 +56,7 @@ function populateTable(players) {
             threePercentCell.textContent = `${player.threePercent}%`;
             const actionCell = document.createElement('td');
             const addButton = document.createElement('button');
+            addButton.classList.add("btn");
             const firstName = player.playerName.split(' ')[0];
             addButton.textContent = `Add ${firstName} to Current Team`;
             addButton.addEventListener('click', () => {
@@ -89,6 +67,9 @@ function populateTable(players) {
             tableBody.appendChild(row);
         });
     }
+    else {
+        tableHeader.classList.add("r");
+    }
 }
 // פונקציה לחיפוש שחקנים ושליחתם לAPI
 async function searchPlayers(event) {
@@ -96,12 +77,13 @@ async function searchPlayers(event) {
     const pointsRange = document.getElementById('points');
     const fgpRange = document.getElementById('fgp');
     const tppRange = document.getElementById('tpp');
-    const position = document.getElementById('position').value;
+    const selectElement = document.getElementById("position");
+    const selectedText = selectElement.options[selectElement.selectedIndex].text;
     const points = parseInt(pointsRange.value);
     const twoPercent = parseInt(fgpRange.value);
     const threePercent = parseInt(tppRange.value);
     try {
-        const players = await api.getPlayersBySearch(position, points, twoPercent, threePercent);
+        const players = await api.getPlayersBySearch(selectedText, points, twoPercent, threePercent);
         populateTable(players);
     }
     catch (error) {
@@ -110,8 +92,3 @@ async function searchPlayers(event) {
 }
 const searchForm = document.querySelector('form');
 searchForm.addEventListener('submit', searchPlayers);
-// הסתרת ההדר של הטבלה כשהאתר נטען
-window.addEventListener('DOMContentLoaded', () => {
-    const tableHeader = document.querySelector('thead');
-    tableHeader.style.display = 'none';
-});

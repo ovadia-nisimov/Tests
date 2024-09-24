@@ -10,6 +10,8 @@ const fgpValue = document.getElementById('fgpValue') as HTMLSpanElement;
 const tppRange = document.getElementById('tpp') as HTMLInputElement;
 const tppValue = document.getElementById('tppValue') as HTMLSpanElement;
 
+
+
 // שיתעדכן בזמן אמת
 pointsRange.addEventListener('input', () => {
     pointsValue.textContent = pointsRange.value;
@@ -33,30 +35,8 @@ function createParagraph(content: string): HTMLParagraphElement {
 // פונקציה שמכניסה לכרטיסים את השחקנים שבחרתי
 function addPlayerToTeam(player: api.Player): void {
 
-    let cardId: string;
-
-    switch (player.position) {
-        case 'PG':
-            cardId = 'point-guard';
-            break;
-        case 'SG':
-            cardId = 'shooting-guard';
-            break;
-        case 'SF':
-            cardId = 'small-forward';
-            break;
-        case 'PF':
-            cardId = 'power-forward';
-            break;
-        case 'C':
-            cardId = 'center';
-            break;
-        default:
-            console.log('Invalid position:', player.position);
-            return;
-    }
-
-    const card = document.getElementById(cardId) as HTMLElement;
+    const position = (document.getElementById('position') as HTMLSelectElement).value;
+    const card = document.getElementById(position) as HTMLElement;
 
     if (card) {
         // הסרה של פסקה שקיימת למניעת כפילויות
@@ -69,18 +49,15 @@ function addPlayerToTeam(player: api.Player): void {
     }
 }
 
-// הפונקציה שיוצרת את הטבלה עם השחקנים
+// פונקציה שיוצרת את הטבלה עם השחקנים
 function populateTable(players: api.Player[]): void {
     const tableBody = document.querySelector('tbody') as HTMLTableSectionElement;
     const tableHeader = document.querySelector('thead') as HTMLElement;
 
     tableBody.innerHTML = '';  
 
-    if (players.length === 0) {
-        tableHeader.style.display = 'none';  
-    } else {
-        tableHeader.style.display = '';  
-
+    if (players.length !== 0) {
+        tableHeader.classList.remove("hidden");
         players.forEach((player: api.Player) => {
             const row: HTMLTableRowElement = document.createElement('tr');
 
@@ -101,9 +78,9 @@ function populateTable(players: api.Player[]): void {
 
             const actionCell: HTMLTableCellElement = document.createElement('td');
             const addButton: HTMLButtonElement = document.createElement('button');
-            
+            addButton.classList.add("btn")
             const firstName: string = player.playerName.split(' ')[0];
-            
+
             addButton.textContent = `Add ${firstName} to Current Team`;
             addButton.addEventListener('click', () => {
                 addPlayerToTeam(player);
@@ -111,11 +88,13 @@ function populateTable(players: api.Player[]): void {
 
             actionCell.appendChild(addButton);
             row.append(playerNameCell, positionCell, pointsCell, twoPercentCell, threePercentCell, actionCell);
-
             tableBody.appendChild(row);
         });
+    } else {
+        tableHeader.classList.add("r");
     }
 }
+
 
 // פונקציה לחיפוש שחקנים ושליחתם לAPI
 async function searchPlayers(event: Event): Promise<void> {
@@ -125,13 +104,14 @@ async function searchPlayers(event: Event): Promise<void> {
     const fgpRange = document.getElementById('fgp') as HTMLInputElement;
     const tppRange = document.getElementById('tpp') as HTMLInputElement;
 
-    const position = (document.getElementById('position') as HTMLSelectElement).value;
+    const selectElement = document.getElementById("position") as HTMLSelectElement;
+    const selectedText = selectElement.options[selectElement.selectedIndex].text;
     const points: number = parseInt(pointsRange.value);
     const twoPercent: number = parseInt(fgpRange.value);
     const threePercent: number = parseInt(tppRange.value);
 
     try {
-        const players = await api.getPlayersBySearch(position, points, twoPercent, threePercent);
+        const players = await api.getPlayersBySearch(selectedText, points, twoPercent, threePercent);
         populateTable(players);
     } catch (error) {
         console.error('Error searching players:', error);
@@ -140,9 +120,3 @@ async function searchPlayers(event: Event): Promise<void> {
 
 const searchForm = document.querySelector('form') as HTMLFormElement;
 searchForm.addEventListener('submit', searchPlayers);
-
-// הסתרת ההדר של הטבלה כשהאתר נטען
-window.addEventListener('DOMContentLoaded', () => {
-    const tableHeader = document.querySelector('thead') as HTMLElement;
-    tableHeader.style.display = 'none';
-});
