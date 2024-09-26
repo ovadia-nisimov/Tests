@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const beeperController_1 = require("../controllers/beeperController");
+const router = (0, express_1.Router)();
+router.post('/', beeperController_1.createBeeper);
+router.get('/', beeperController_1.getBeepers);
+router.get('/:id', beeperController_1.getBeeperById);
+router.put('/:id/status', beeperController_1.updateBeeperStatus);
+router.delete('/:id', beeperController_1.deleteBeeper);
+router.get('/status/:status', beeperController_1.getBeepersByStatus);
+exports.default = router;

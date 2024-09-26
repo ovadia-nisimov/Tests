@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+
+    /* Language and Environment */
+    "target": "ES2023",                                 
+    
+    /* Modules */
+    "module": "CommonJS",                                 
+    "rootDir": "./src",                                
+    "outDir": "./dist",                                
+    
+    /* Interop Constraints */
+    "esModuleInterop": true,                            
+    "forceConsistentCasingInFileNames": true,       
+    
+    /* Type Checking */
+    "strict": true,                                  
+    
+    /* Completeness */
+    "skipLibCheck": true                             
+  }
+}
