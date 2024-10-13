@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document, Model, Types } from 'mongoose';
 import validator from 'validator';
 import bcrypt from 'bcrypt';
-import { IGrade, GradeSchema } from './Grade'; 
+import { IGrade, GradeSchema } from './gradeModel'; 
 
 
 export interface IStudent extends Document {
@@ -9,6 +9,7 @@ export interface IStudent extends Document {
     email: string;
     password: string;
     classId: Types.ObjectId; 
+    className: string;
     grades: IGrade[];        
 }
 
@@ -18,6 +19,7 @@ const StudentSchema: Schema<IStudent> = new Schema<IStudent>({
     email: { type: String, required: true, unique: true, validate: [validator.isEmail, 'invalid email'] },
     password: { type: String, required: true, minlength: 6 },
     classId: { type: Schema.Types.ObjectId, ref: 'Class', required: true }, 
+    className: { type: String, required: true },
     grades: [GradeSchema] 
 });
 

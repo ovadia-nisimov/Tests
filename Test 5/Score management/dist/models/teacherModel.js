@@ -22,12 +22,38 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Teacher = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const teacherSchema = new mongoose_1.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    classId: { type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Class', required: true }
+const validator_1 = __importDefault(require("validator"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const TeacherSchema = new mongoose_1.Schema({
+    name: { type: String, required: true, minlength: 3, maxlength: 50 },
+    email: { type: String, required: true, unique: true, validate: [validator_1.default.isEmail, 'invalid email'] },
+    password: { type: String, required: true, minlength: 6 },
+    className: { type: String, required: true },
+    classId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Class', required: true }
 });
-exports.default = mongoose_1.default.model('Teacher', teacherSchema);
+// הצפנת הסיסמה
+TeacherSchema.pre('save', function (next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (!this.isModified('password'))
+            return next();
+        const salt = yield bcrypt_1.default.genSalt(10);
+        this.password = yield bcrypt_1.default.hash(this.password, salt);
+        next();
+    });
+});
+exports.Teacher = mongoose_1.default.model('Teacher', TeacherSchema);
