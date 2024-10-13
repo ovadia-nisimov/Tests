@@ -8,7 +8,7 @@ export interface ITeacher extends Document {
     email: string;
     password: string;
     className: string; 
-    classId: Types.ObjectId;
+    classId?: Types.ObjectId;
 }
 
 
@@ -17,7 +17,7 @@ const TeacherSchema: Schema<ITeacher> = new Schema<ITeacher>({
     email: { type: String, required: true, unique: true, validate: [validator.isEmail, 'invalid email'] },
     password: { type: String, required: true, minlength: 6 },
     className: { type: String, required: true },
-    classId: { type: Schema.Types.ObjectId, ref: 'Class', required: true } 
+    classId: { type: Schema.Types.ObjectId, ref: 'Class' } 
 });
 
 

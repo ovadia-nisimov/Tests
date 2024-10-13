@@ -1,12 +1,11 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
-import postRouter from "./routes/authRoutes";
-import userRouter from "./routes/gradesRoutes";
+import authRouter from "./routes/authRoutes";
+import gradesRouter from "./routes/gradesRoutes";
+import studentRouter from "./routes/studentRoutes";
+import teacherRouter from "./routes/teacherRoutes";
 import { connectDB } from "./config/db";
 import cookieParser from 'cookie-parser';
-import { verifyJWT } from "./middleware/authMiddleware";
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocs from './config/swagger'; 
 
 
 dotenv.config();
@@ -20,9 +19,6 @@ app.use(cookieParser());
 
 
 connectDB();
-
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 // Routes

@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { registerStudent } from "../controllers/studentController";
+import { register } from "../controllers/studentController";
 
 
 const router = Router();
 
 
-router.post("/register", registerStudent);
+router.post("/register", register);
 
 
 export default router;

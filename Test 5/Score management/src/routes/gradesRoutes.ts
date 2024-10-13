@@ -1,13 +1,17 @@
 import { Router } from "express";
-import { addGrade, updateGrade, getStudentGrades, getClassGrades, getClassAverage } from "../controllers/gradesController";
+import { addGrade, changeGrade, getClassAverage, getStudentGradeForSelf, getStudentGradeForTeacher, getClassGrades } from "../controllers/gradesController";
+import { verifyStudentJWT, verifyTeacherJWT } from "../middleware/authMiddleware";
+
 
 const router = Router();
 
 router.post("/add", addGrade);
 
-router.put("/update/:gradeId", updateGrade);
+router.put("/update/:gradeId", changeGrade);
 
-router.get("/student/:studentId", getStudentGrades);
+router.get("/student-access/student/:studentId", getStudentGradeForSelf);
+
+router.get("/teacher-access/student/:studentId", getStudentGradeForTeacher);
 
 router.get("/class/:classId", getClassGrades);
 

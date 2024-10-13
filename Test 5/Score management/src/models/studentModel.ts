@@ -18,7 +18,7 @@ const StudentSchema: Schema<IStudent> = new Schema<IStudent>({
     name: { type: String, required: true, minlength: 3, maxlength: 50 },
     email: { type: String, required: true, unique: true, validate: [validator.isEmail, 'invalid email'] },
     password: { type: String, required: true, minlength: 6 },
-    classId: { type: Schema.Types.ObjectId, ref: 'Class', required: true }, 
+    classId: { type: Schema.Types.ObjectId, ref: 'Class' }, 
     className: { type: String, required: true },
     grades: [GradeSchema] 
 });
