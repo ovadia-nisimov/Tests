@@ -18,6 +18,7 @@ export const loginService = async (name: string, password: string) => {
             throw new Error("Invalid credentials");
         }
     }
+    
 
     // בדיקת הסיסמה
     const isMatch = await bcrypt.compare(password, user.password);
